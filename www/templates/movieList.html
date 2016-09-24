@@ -1,0 +1,28 @@
+<ion-view >
+  <ion-header-bar>
+    <button class="button button-clear" style="color: #111111" ng-click="goBack()">返回</button>
+    <h1 class="title">电影列表</h1>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="row" ng-repeat="item in movieList">
+      <div class="col" style="width: 50%" ng-repeat="movie in item" ng-click="seeMovieDetail(movie)">
+        <div class="list card">
+          <div class="item item-image">
+            <img ng-if="movie.images.medium" src="{{movie.images.medium}}">
+          </div>
+          <div class="item">
+            <h2><span>{{movie.title}}</span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 上拉加载更多 -->
+    <ion-infinite-scroll
+      ng-if="hasMoreData"
+      on-infinite="getMoreMovie()"
+      distance="2%">
+    </ion-infinite-scroll>
+  </ion-content>
+
+</ion-view>
